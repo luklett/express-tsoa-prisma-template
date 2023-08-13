@@ -1,3 +1,7 @@
+# Own
+src/routes.ts
+src/swagger.json
+
 # Logs
 logs
 *.log
