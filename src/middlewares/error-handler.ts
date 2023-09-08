@@ -6,12 +6,14 @@ import { statusCode } from '../config/status-const';
 
 export const errorHandlerMiddleware = (
   error: unknown,
-  req: Request,
+  _req: Request,
   res: Response,
   next: NextFunction
 ): Response | void => {
+  if (!error) return next();
+
   registerError(error as Error);
-  console.log(error);
+  console.error(error);
 
   if (error instanceof ValidateError) {
     return res.status(statusCode.clientError.validationFail).json({
@@ -21,12 +23,10 @@ export const errorHandlerMiddleware = (
   }
 
   if (error instanceof Exception) {
-    res.status(error.status).json({ message: error.message });
+    return res.status(error.status).json({ message: error.message });
   } else if (error instanceof Error) {
-    res.status(statusCode.serverError.internalServerError).json({ message: error.message });
+    return res.status(statusCode.serverError.internalServerError).json({ message: error.message });
   } else {
-    res.status(statusCode.serverError.internalServerError).json(error);
+    return res.status(statusCode.serverError.internalServerError).json(error);
   }
-
-  return next();
 };

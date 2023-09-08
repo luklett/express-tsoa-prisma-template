@@ -15,9 +15,7 @@ function getPossibleWords(word: string): string[] {
       const newWords = [];
       for (let j = 0; j < possibleWords.length; j++) {
         const possibleWord = possibleWords[j];
-        newWords.push(
-          possibleWord.substring(0, i) + accentVowels[index] + possibleWord.substring(i + 1)
-        );
+        newWords.push(possibleWord.substring(0, i) + accentVowels[index] + possibleWord.substring(i + 1));
       }
       possibleWords = possibleWords.concat(newWords);
     }
@@ -43,10 +41,7 @@ prisma.$use(async (params, next) => {
       const possibleWords = getPossibleWords(valueWithoutAccents);
 
       for (const possibleWord of possibleWords) {
-        const newStringArgs = stringArgs.replaceAll(
-          `"contains":"${value}"`,
-          `"contains":"${possibleWord}"`
-        );
+        const newStringArgs = stringArgs.replaceAll(`"contains":"${value}"`, `"contains":"${possibleWord}"`);
         const newArgs = JSON.parse(newStringArgs);
 
         const result = await next({ ...params, args: newArgs });
@@ -74,10 +69,7 @@ prisma.$use(async (params, next) => {
       const possibleWords = getPossibleWords(valueWithoutAccents);
 
       for (const possibleWord of possibleWords) {
-        const newStringArgs = stringArgs.replaceAll(
-          `"contains":"${value}"`,
-          `"contains":"${possibleWord}"`
-        );
+        const newStringArgs = stringArgs.replaceAll(`"contains":"${value}"`, `"contains":"${possibleWord}"`);
         const newArgs = JSON.parse(newStringArgs);
 
         const result = await next({ ...params, args: newArgs });
