@@ -3,7 +3,6 @@ import express from 'express';
 import cors from 'cors';
 import swaggerUI from 'swagger-ui-express';
 import morgan from 'morgan';
-import { logMiddleware } from './middlewares/log';
 import swaggerJson from './swagger.json';
 import { RegisterRoutes } from './routes';
 import { errorHandlerMiddleware } from './middlewares/error-handler';
@@ -11,7 +10,6 @@ import { errorHandlerMiddleware } from './middlewares/error-handler';
 const app = express();
 
 app.use(cors());
-app.use(logMiddleware);
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
