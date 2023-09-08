@@ -7,6 +7,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum UserType {
+  admin
+  user
+}
+
 model User {
   id        String   @id @default(uuid())
   email     String   @unique
@@ -14,4 +19,5 @@ model User {
   password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  type      UserType @default(user)
 }

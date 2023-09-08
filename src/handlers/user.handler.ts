@@ -1,8 +1,8 @@
 import Exception from '../config/exception';
 import { statusCode } from '../config/status-const';
-import { CreateUserDto } from '../dtos/user/create-user.dto';
-import { UpdateUserDto } from '../dtos/user/update-user.dto';
-import { IUser } from '../interfaces/user/user.interface';
+import { CreateUserDto } from '../interfaces/dtos/user/create-user.dto';
+import { UpdateUserDto } from '../interfaces/dtos/user/update-user.dto';
+import { UserModel } from '../interfaces/models/user/user.interface';
 import { UsersService } from '../services/user.service';
 
 export class UsersHandler {
@@ -12,7 +12,7 @@ export class UsersHandler {
     this.usersService = new UsersService();
   }
 
-  async findById(id: string): Promise<IUser> {
+  async findById(id: string): Promise<UserModel> {
     const user = await this.usersService.findById(id);
 
     if (!user) {
@@ -25,7 +25,7 @@ export class UsersHandler {
     return user;
   }
 
-  async findByEmail(email: string): Promise<IUser> {
+  async findByEmail(email: string): Promise<UserModel> {
     const user = await this.usersService.findByEmail(email);
 
     if (!user) {
@@ -38,19 +38,19 @@ export class UsersHandler {
     return user;
   }
 
-  async create(data: CreateUserDto): Promise<IUser> {
+  async create(data: CreateUserDto): Promise<UserModel> {
     const user = await this.usersService.create(data);
 
     return user;
   }
 
-  async update(id: string, data: UpdateUserDto): Promise<IUser> {
+  async update(id: string, data: UpdateUserDto): Promise<UserModel> {
     const user = await this.usersService.update(id, data);
 
     return user;
   }
 
-  async delete(id: string): Promise<IUser> {
+  async delete(id: string): Promise<UserModel> {
     const user = await this.usersService.delete(id);
 
     return user;

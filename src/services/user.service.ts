@@ -1,7 +1,7 @@
 import { User } from '@prisma/client';
 import prisma from '../config/db';
-import { CreateUserDto } from '../dtos/user/create-user.dto';
-import { UpdateUserDto } from '../dtos/user/update-user.dto';
+import { CreateUserDto } from '../interfaces/dtos/user/create-user.dto';
+import { UpdateUserDto } from '../interfaces/dtos/user/update-user.dto';
 
 export class UsersService {
   findById(id: string): Promise<User | null> {

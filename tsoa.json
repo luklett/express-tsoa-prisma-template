@@ -9,5 +9,6 @@
   "routes": {
     "routesDir": "src",
     "basePath": "api"
-  }
+  },
+  "noImplicitAdditionalProperties": "silently-remove-extras"
 }

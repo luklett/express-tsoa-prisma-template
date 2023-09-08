@@ -1,8 +1,8 @@
 import { Body, Delete, Get, Path, Post, Put, Query, Route, Tags } from 'tsoa';
-import { CreateUserDto } from '../dtos/user/create-user.dto';
-import { UpdateUserDto } from '../dtos/user/update-user.dto';
+import { CreateUserDto } from '../interfaces/dtos/user/create-user.dto';
+import { UpdateUserDto } from '../interfaces/dtos/user/update-user.dto';
 import { UsersHandler } from '../handlers/user.handler';
-import { UserEntityResponse } from '../reponses/user/user-entity.response';
+import { UserEntityResponse } from '../interfaces/reponses/user/user-entity.response';
 
 @Tags('Users')
 @Route('/users')
